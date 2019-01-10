@@ -1,0 +1,23 @@
+{
+  "name": "murlax-personal",
+  "version": "0.1.0",
+  "description": "Personal website for Murali Varma",
+  "main": "index.js",
+  "scripts": {
+    "build": "vuepress build .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muraliavarma/personal.git"
+  },
+  "author": "Murali Varma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muraliavarma/personal/issues"
+  },
+  "homepage": "https://github.com/muraliavarma/personal#readme",
+  "devDependencies": {
+    "vuepress": "^0.14.8"
+  }
+}
