@@ -5,20 +5,47 @@ sidebar: auto
 ---
 
 ## Overview
-I am a Full Stack Developer living in the Bay Area. I love keeping myself up-to-date with the latest technologies and build backends that scale with it.
+I am a Full Stack Developer living in the Bay Area. I love keeping myself up-to-date with the latest front-end technologies and build backends that scale with it.
 
-In fact, when I had first made this website, it was in AngluarJS. Later I moved to a minimal [Bulma](https://bulma.io/) framework. Today it uses [Vuepress](https://vuepress.vuejs.org/) deployed on [Netlify](https://www.netlify.com/). It will probably change by end of this year.
+In fact, when I had first made this website, it was in [AngluarJS](https://angularjs.org/). Later I moved to a minimal [Bulma](https://bulma.io/) framework. Today it uses [Vuepress](https://vuepress.vuejs.org/) deployed on [Netlify](https://www.netlify.com/). If I were to guess, it will probably change again by end of this year.
 
-Here are some of my favorite projects that I have worked on:
+Below, I have picked a few projects that I have enjoyed working on. Hope you enjoy reading it too.
 
-## Slots Challenges
-<ProjectItem :tags="['ReactJS', 'PHP']">
-  <div slot="description">Designed and implemented the core logic in PHP for a robust challenges framework in Zynga Hit It Rich! Slots game. This has been extended and used for multiple features, all configurable from a single feature-rich admin page made in React JS.</div>
+## Atlas Explorer
+<ProjectItem :tags="['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox']">
+  <div slot="description">
+    This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB. 
+    <br/><br/>
+    I took ownership of the data table component and made a completely in-house open sourced VueJS table component that uses the power of scoped slots. Some of its features are sticky columns, grouped headers and unopinionated styling that allow end-users to customize the look and feel while not sacrificing functionality.
+    <br/><br/>
+    I also handled the Python mini-server code, which would interact with a much larger data API using Keycloak as its authentication mechanism. Consequently, I worked on all the token exchange mechanisms between various clients, Keycloak JavaScript library integration and Keycloak login page theming (using kubernetes init containers managed via Helm and Apache Freemarker).
+  </div>
+  <img slot="image" src="./assets/atlas.jpg"/>
 </ProjectItem>
 
-## Elasticache Migration
-<ProjectItem :tags="['AWS', 'Lambda Functions', 'Python']">
-  <div slot="description">Devised migration plan for moving volatile keys from internal Memcached solution to AWS Elasticache. Wrote AWS Lambda functions in Python to handle automatic replacement of bad nodes.</div>
+## JavaScript RayTracer
+<ProjectItem :tags="['ThreeJS', 'AngularJS', 'NodeJS']" url-link="https://github.com/muraliavarma/raytracer_nodejs" url-text="Github">
+  <div slot="description">
+    In this project, I created the rendering pipeline in JavaScript in a single HTML page. The user can change position of object and lights in 3D space through the browser and see results immediately. The steps involved are world transformation, lighting calculation, view transformation, perspective transformation, z-clipping, culling, z-sorting and resterization.
+    <br/><br/>
+    I use a library called Sylvester to do matrix calculations and Raphael for rasterization. The native HTML5 canvas element created blurry lines due to anti-aliasing. In the future, I plan to access pixel data and implement Bresenham's line drawing algorithm to render it in canvas.
+    <br/><br/>
+    Image here shows a screenshot of a 3D plane which is rendered as a series of pixels after going through the rendering pipeline. Click the Live Demo above to play with these values in real time.
+  </div>
+  <img slot="image" src="./assets/raytracer.png"/>
+</ProjectItem>
+
+## AWS Services
+<ProjectItem :tags="['AWS', 'Lambda Functions', 'Cloudfront', 'EBS']">
+  <div slot="description">
+    Over the last couple of years, I have worked on multiple products within Amazon Web Services.
+    <br/><br/>
+    At SAP.IO, I monitored the usage of our unmanaged Kubernetes Cluster (before EKS) and reduced costs by 60% by downscaling them using kops.
+    <br/><br/>
+    I also worked through the high pressure process of restoring the latest EBS snapshot of an accidentally deleted volume that was attached to a super important EC2 node.
+    <br/><br/>
+    At Zynga, I oversaw the migration plan for moving volatile keys from internal Memcached solution to AWS Elasticache. I also wrote AWS Lambda functions in Python to handle automatic replacement of bad nodes.
+  </div>
 </ProjectItem>
 
 ## YouSpot
@@ -33,16 +60,14 @@ Here are some of my favorite projects that I have worked on:
   <img slot="image" src="./assets/youspot.png"/>
 </ProjectItem>
 
-## JavaScript RayTracer
-<ProjectItem :tags="['ThreeJS', 'AngularJS', 'NodeJS']" url-link="https://github.com/muraliavarma/raytracer_nodejs" url-text="Github">
+## Slots Challenges
+<ProjectItem :tags="['ReactJS', 'Redux', 'PHP']">
   <div slot="description">
-    In this project, I created the rendering pipeline in JavaScript in a single HTML page. The user can change position of object and lights in 3D space through the browser and see results immediately. The steps involved are world transformation, lighting calculation, view transformation, perspective transformation, z-clipping, culling, z-sorting and resterization.
-    <br/><br/>
-    I use a library called Sylvester to do matrix calculations and Raphael for rasterization. The native HTML5 canvas element created blurry lines due to anti-aliasing. In the future, I plan to access pixel data and implement Bresenham's line drawing algorithm to render it in canvas.
-    <br/><br/>
-    Image here shows a screenshot of a 3D plane which is rendered as a series of pixels after going through the rendering pipeline. Click the Live Demo above to play with these values in real time.
+  Designed and implemented the core logic in PHP for a framework in Zynga Hit It Rich! Slots game that presents players with tasks/challenges which when completed grants them rewards. This has been extended and used for multiple features and events, all configurable from a single feature-rich admin page made in React JS and Redux.
+  <br/><br/>
+  Since these features are timed events, servers were usually under heavy load during this time. To mitigate this, I implemented a caching strategy for storing the latest configuration files in each web server as well as in-memory.
   </div>
-  <img slot="image" src="./assets/raytracer.png"/>
+  <img slot="image" src="./assets/slots.png"/>
 </ProjectItem>
 
 ## Shapes AI Game
