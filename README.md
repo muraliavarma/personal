@@ -11,7 +11,7 @@ In fact, when I had first made this website, it was in [AngluarJS](https://angul
 
 Below, I have picked a few projects that I have enjoyed working on. Hope you enjoy reading it too.
 
-## Atlas Explorer
+## Geo Spatial Data Explorer
 <ProjectItem :tags="['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox']">
   <div slot="description">
     This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB. 
@@ -35,6 +35,16 @@ Below, I have picked a few projects that I have enjoyed working on. Hope you enj
   <img slot="image" src="./assets/raytracer.png"/>
 </ProjectItem>
 
+## Social Authentication
+<ProjectItem :tags="['PassportJS', 'AWS', 'SES', 'VueJS', 'NodeJS']">
+  <div slot="description">
+    This website uses multiple social platforms for logging into the application including Facebook, Google and Twitch. I used PassportJS and NodeJS to accomplish the Oauth2.0 and Oauth1.0 (for Twitter) flows.
+    <br/><br/>
+    I used Redis for storing user session data since long-lived sessions were important. I also allowed a regular username/password login option with options to verify email and reset password. For this purpose, I used AWS SES to generate templates for sending custom emails to users.
+  </div>
+  <img slot="image" src="./assets/passport.jpg"/>
+</ProjectItem>
+
 ## AWS Services
 <ProjectItem :tags="['AWS', 'Lambda Functions', 'Cloudfront', 'EBS']">
   <div slot="description">
@@ -45,6 +55,8 @@ Below, I have picked a few projects that I have enjoyed working on. Hope you enj
     I also worked through the high pressure process of restoring the latest EBS snapshot of an accidentally deleted volume that was attached to a super important EC2 node.
     <br/><br/>
     At Zynga, I oversaw the migration plan for moving volatile keys from internal Memcached solution to AWS Elasticache. I also wrote AWS Lambda functions in Python to handle automatic replacement of bad nodes.
+    <br/><br/>
+    I have also worked on Amazon SES templates and workmail integration in my side projects.
   </div>
 </ProjectItem>
 
