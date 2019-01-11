@@ -79,7 +79,7 @@ Below, I have picked a few projects that I have enjoyed working on. Hope you enj
   <br/><br/>
   Since these features are timed events, servers were usually under heavy load during this time. To mitigate this, I implemented a caching strategy for storing the latest configuration files in each web server as well as in-memory.
   </div>
-  <img slot="image" src="./assets/slots.png"/>
+  <img slot="image" src="./assets/slots.jpg"/>
 </ProjectItem>
 
 ## Shapes AI Game
