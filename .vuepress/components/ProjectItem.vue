@@ -59,6 +59,7 @@ export default {
 .tags {
   display: flex;
   margin: 0 0 12px 0;
+  flex-wrap: wrap;
 }
 
 .tag {
