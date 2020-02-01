@@ -5,7 +5,7 @@ module.exports = {
     nav: [
       { text: 'Github', link: 'https://github.com/muraliavarma' },
       { text: 'Linkedin', link: 'https://www.linkedin.com/in/murlax/' },
-      { text: 'Resume', link: 'https://murlax.com/Murali_Resume_2019_10.pdf' },
+      { text: 'Resume', link: 'https://murlax.com/Murali_Resume_2020_02.pdf' },
     ],
   },
 }
