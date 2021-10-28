@@ -11,6 +11,20 @@ In fact, when I had first made this website, it was in [AngluarJS](https://angul
 
 Below, I have picked a few projects that I have enjoyed working on. Hope you enjoy reading it too.
 
+## TripIt Vue Web app
+<ProjectItem :tags="['VueJS', 'Docker', 'CloudFormation', 'Nginx', 'Auth', 'PHP', 'Jest', 'Cypress']">
+  <div slot="description">
+    I am currently leading a dev team in developing TripIt's new Web Application built from the ground up in VueJS. My initial goal was to create a POC that integrates with TripIt's existing infrastructure of AWS ECS containers and CI/CD pipeline. Next, I deep dived into authentication mechanisms and created RFCs for team input. We decided upon industry best practices and chose cookie based mechanism over OAuth2 to reduce attack vectors.
+    <br/><br/>
+    Some of my responsibilities included doing architectural reviews with the threat modeling team, mentoring junior developers and creating onboarding documentats. Before getting into the daily feature work, I also setup a comprehensive serializer/deserializer framework to abstract out our legacy API in order to reduce work when we transition to the new API.
+    <br/><br/>
+    As we rolled this app out in EU first, I had some significant challenges to overcome before we could launch. In particular, our web app was only avalable to US, while our mobile app worked in EU and US. I needed a way for browser cookies to maintain sessions for EU, which required a good amount of collaboration with other senior engineers.
+    <br/><br/>
+    Some of the more interesting features that I worked on in this project include COVID Guidance, account email management, localization and inbox synchronization.
+  </div>
+  <img slot="image" src="./assets/tripit.png"/>
+</ProjectItem>
+
 ## Geo Spatial Data Explorer
 <ProjectItem :tags="['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox']">
   <div slot="description">
