@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/muraliavarma/personal#readme",
   "devDependencies": {
-    "vuepress": "^0.14.8"
+    "vuepress": "^1.9.7"
   }
 }
