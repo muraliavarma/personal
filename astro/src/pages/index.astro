@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 import { getCollection } from 'astro:content';
+import ContactFooter from '../components/ContactFooter.astro';
 
 // Get all projects from the content collection
 const allProjects = await getCollection('projects');
@@ -11,16 +12,19 @@ const featuredProjects = allProjects
   .slice(0, 3);
 
 const skills = [
-  { name: 'JavaScript', icon: '📜' },
   { name: 'TypeScript', icon: '🔷' },
   { name: 'React', icon: '⚛️' },
+  { name: 'Next.js', icon: '⏭️' },
   { name: 'Vue', icon: '🟢' },
   { name: 'Node.js', icon: '🟩' },
   { name: 'Python', icon: '🐍' },
   { name: 'CSS/SCSS', icon: '🎨' },
   { name: 'GraphQL', icon: '⬢' },
   { name: 'AWS', icon: '☁️' },
-  { name: 'Docker', icon: '🐳' }
+  { name: 'Cloudflare', icon: '🌐' },
+  { name: 'AI', icon: '🤖' },
+  { name: 'Oracle', icon: '🟠' },
+  { name: 'Shopify', icon: '🛒' }
 ];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -34,7 +38,7 @@ const skills = [
 				<h1>Hi, I'm <span class="highlight">Murali Varma</span></h1>
 				<h2>Full Stack Developer</h2>
 				<p class="intro-text">
-					I create scalable and responsive web applications using modern technologies. Based in the Bay Area, I'm passionate about building elegant solutions to complex problems.
+					I build modern, scalable web applications and cloud infrastructure using Next.js, React, AWS, Cloudflare, and more. My recent work focuses on fintech, travel, and gaming—delivering solutions for high-impact, fast-moving industries. I also have experience with AI-driven solutions and enterprise systems with Oracle. Based in the Bay Area, I'm passionate about leveraging the latest tech to solve real-world problems.
 				</p>
 				<div class="cta-buttons">
 					<a href="/projects" class="cta-button primary">View My Projects</a>
@@ -46,8 +50,9 @@ const skills = [
 					<pre><code>
 <span class="code-keyword">const</span> <span class="code-variable">developer</span> = &#123;
   name: <span class="code-string">'Murali Varma'</span>,
-  skills: [<span class="code-string">'JavaScript'</span>, <span class="code-string">'TypeScript'</span>, <span class="code-string">'React'</span>],
-  passion: <span class="code-string">'Building web experiences'</span>,
+  skills: [<span class="code-string">'React'</span>, <span class="code-string">'AWS'</span>, <span class="code-string">'Cloudflare'</span>, <span class="code-string">'AI'</span>],
+  industries: [<span class="code-string">'Fintech'</span>, <span class="code-string">'Travel'</span>, <span class="code-string">'Gaming'</span>],
+  passion: <span class="code-string">'Scaling Modern Web Apps'</span>,
   learning: <span class="code-string">'Always'</span>
 &#125;;</code></pre>
 				</div>
@@ -64,7 +69,7 @@ const skills = [
 		<div class="container">
 			<h3>My Tech Journey</h3>
 			<p>
-				When I first built this website, it was in <a href="https://angularjs.org/">AngularJS</a>. Later I moved to a minimal <a href="https://bulma.io/">Bulma</a> framework. Then it used <a href="https://vuepress.vuejs.org/">VuePress</a> deployed on <a href="https://www.netlify.com/">Netlify</a>. Now it's built with <a href="https://astro.build">Astro</a> - constantly evolving with modern web technology.
+				My journey started with <a href="https://angularjs.org/">AngularJS</a> and evolved through <a href="https://bulma.io/">Bulma</a> and <a href="https://vuepress.vuejs.org/">VuePress</a>. Today, I specialize in building with <a href="https://nextjs.org/">Next.js</a> and <a href="https://react.dev/">React</a>, deploying robust infrastructure on <a href="https://aws.amazon.com/">AWS</a> and <a href="https://cloudflare.com/">Cloudflare</a>, and creating solutions for fintech, travel, and gaming. I also explore <a href="https://openai.com/">AI</a>, work with <a href="https://www.oracle.com/">Oracle</a> systems, and have experience integrating with <a href="https://shopify.com/">Shopify</a>. My site is now built with <a href="https://astro.build">Astro</a>—constantly evolving with modern web technology.
 			</p>
 			
 			<div class="skills-container">
@@ -108,23 +113,7 @@ const skills = [
 		</div>
 	</section>
 
-	<section class="contact">
-		<div class="container">
-			<h3>Let's Connect</h3>
-			<p>Have a project in mind or just want to chat about tech? Find me on these platforms:</p>
-			<div class="social-links">
-				<a href="https://github.com/muraliavarma" target="_blank" rel="noopener noreferrer" class="social-link">
-					<span class="icon">💻</span> GitHub
-				</a>
-				<a href="https://www.linkedin.com/in/murlax/" target="_blank" rel="noopener noreferrer" class="social-link">
-					<span class="icon">🔗</span> LinkedIn
-				</a>
-				<a href="https://murlax.com/resume" target="_blank" rel="noopener noreferrer" class="social-link">
-					<span class="icon">📄</span> Resume
-				</a>
-			</div>
-		</div>
-	</section>
+	<ContactFooter />
 </Layout>
 
 <style>
@@ -335,50 +324,6 @@ const skills = [
 		margin-bottom: 1rem;
 	}
 
-	/* Contact Section */
-	.contact {
-		padding: 4rem 0 5rem;
-		background-color: var(--background-alt);
-		border-radius: 16px 16px 0 0;
-	}
-
-	.contact p {
-		text-align: center;
-		max-width: 600px;
-		margin: 0 auto 2rem;
-	}
-
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
-		margin-top: 2rem;
-	}
-
-	.social-link {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.8rem 1.5rem;
-		background-color: var(--background-color);
-		border-radius: 8px;
-		font-weight: 600;
-		transition: all 0.3s ease;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-		border: 1px solid var(--border-color);
-		font-size: 1rem;
-	}
-
-	.social-link:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-		border-color: var(--primary-light);
-	}
-
-	.icon {
-		font-size: 1.2rem;
-	}
-
 	/* CTA Buttons */
 	.cta-buttons {
 		display: flex;
@@ -444,10 +389,6 @@ const skills = [
 		color: #4ade80; /* Lighter Green */
 	}
 
-	html.dark .social-link:hover {
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-	}
-
 	@media (max-width: 768px) {
 		.hero-content {
 			flex-direction: column;
@@ -475,18 +416,6 @@ const skills = [
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 0.8rem;
-		}
-
-		.social-links {
-			flex-direction: column;
-			gap: 1rem;
-			align-items: center;
-		}
-
-		.social-link {
-			width: 100%;
-			max-width: 250px;
-			justify-content: center;
 		}
 
 		.skills-grid {

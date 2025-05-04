@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 import { getCollection } from 'astro:content';
+import ContactFooter from '../components/ContactFooter.astro';
 
 // Get all projects from the content collection
 const allProjects = await getCollection('projects');
@@ -39,6 +40,8 @@ const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
     ))}
   </div>
 </Layout>
+
+<ContactFooter />
 
 <style>
   h1 {
