@@ -1,6 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
+import { getCollection } from 'astro:content';
+
+// Get all projects from the content collection
+const allProjects = await getCollection('projects');
+// Sort by sortOrder and take the top 3 for the homepage
+const featuredProjects = allProjects
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .slice(0, 3);
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -23,33 +31,25 @@ import ProjectItem from '../components/ProjectItem.astro';
 	</section>
 
 	<section class="projects">
-		<h2>TripIt Vue Web app</h2>
-		<ProjectItem tags={['VueJS', 'Docker', 'CloudFormation', 'Nginx', 'Auth', 'PHP', 'Jest', 'Cypress']}>
-			<div slot="description">
-				I am currently leading a dev team in developing TripIt's new Web Application built from the ground up in VueJS. My initial goal was to create a POC that integrates with TripIt's existing infrastructure of AWS ECS containers and CI/CD pipeline. Next, I deep dived into authentication mechanisms and created RFCs for team input. We decided upon industry best practices and chose cookie based mechanism over OAuth2 to reduce attack vectors.
-				<br/><br/>
-				Some of my responsibilities included doing architectural reviews with the threat modeling team, mentoring junior developers and creating onboarding documents. Before getting into the daily feature work, I also setup a comprehensive serializer/deserializer framework to abstract out our legacy API in order to reduce work when we transition to the new API.
-				<br/><br/>
-				As we rolled this app out in EU first, I had some significant challenges to overcome before we could launch. In particular, our old web app was only avalable to US, while our mobile app worked in EU and US. A lot of our code was written under the assumption that only mobile would ever work in EU. I needed a way for browser cookies to maintain sessions for EU, which required a good amount of collaboration with other senior engineers.
-				<br/><br/>
-				Some of the more interesting features that I worked on in this project include COVID Guidance, account email management, localization and inbox synchronization.
-			</div>
-			<img slot="image" src="/assets/tripit.png" alt="TripIt Vue Web app screenshot" />
-		</ProjectItem>
-
-		<h2>Geo Spatial Data Explorer</h2>
-		<ProjectItem tags={['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox']}>
-			<div slot="description">
-				This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB. 
-				<br/><br/>
-				I took ownership of the data table component and made a completely in-house open sourced VueJS table component that uses the power of scoped slots. Some of its features are sticky columns, grouped headers and unopinionated styling that allow end-users to customize the look and feel while not sacrificing functionality.
-				<br/><br/>
-				I also handled the Python mini-server code, which would interact with a much larger data API using Keycloak as its authentication mechanism. Consequently, I worked on all the token exchange mechanisms between various clients, Keycloak JavaScript library integration and Keycloak login page theming (using kubernetes init containers managed via Helm and Apache Freemarker).
-			</div>
-			<img slot="image" src="/assets/atlas.jpg" alt="Geo Spatial Data Explorer screenshot" />
-		</ProjectItem>
-
-		<!-- More projects would be added here -->
+		{featuredProjects.map((project) => (
+			<>
+				<h2>{project.data.title}</h2>
+				<ProjectItem 
+					tags={project.data.tags} 
+					urlLink={project.data.urlLink}
+					urlText={project.data.urlText}
+				>
+					<div slot="description" set:html={project.body} />
+					{project.data.image && (
+						<img slot="image" src={project.data.image} alt={`${project.data.title} screenshot`} />
+					)}
+				</ProjectItem>
+			</>
+		))}
+		
+		<div class="see-more">
+			<a href="/projects" class="cta-button primary">See All Projects</a>
+		</div>
 	</section>
 </Layout>
 
@@ -113,6 +113,11 @@ import ProjectItem from '../components/ProjectItem.astro';
 	.cta-button:not(.primary):hover {
 		background-color: #f5f5f5;
 		text-decoration: none;
+	}
+
+	.see-more {
+		margin: 3rem 0;
+		text-align: center;
 	}
 
 	@media (max-width: 768px) {

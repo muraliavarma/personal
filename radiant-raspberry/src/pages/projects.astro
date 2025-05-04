@@ -1,21 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
+import { getCollection } from 'astro:content';
 
-const projects = [
-  {
-    title: "TripIt Vue Web app",
-    tags: ['VueJS', 'Docker', 'CloudFormation', 'Nginx', 'Auth', 'PHP', 'Jest', 'Cypress'],
-    image: "/assets/tripit.png",
-    body: "I am currently leading a dev team in developing TripIt's new Web Application built from the ground up in VueJS. My initial goal was to create a POC that integrates with TripIt's existing infrastructure of AWS ECS containers and CI/CD pipeline. Next, I deep dived into authentication mechanisms and created RFCs for team input. We decided upon industry best practices and chose cookie based mechanism over OAuth2 to reduce attack vectors."
-  },
-  {
-    title: "Geo Spatial Data Explorer",
-    tags: ['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox'],
-    image: "/assets/atlas.jpg",
-    body: "This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB."
-  }
-];
+// Get all projects from the content collection
+const allProjects = await getCollection('projects');
+// Sort by sortOrder
+const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 ---
 
 <Layout title="Projects | Murali Varma">
@@ -27,18 +18,20 @@ const projects = [
   <div class="projects-list">
     {projects.map((project) => (
       <div class="project">
-        <h2>{project.title}</h2>
+        <h2>{project.data.title}</h2>
         <ProjectItem 
-          tags={project.tags}
+          tags={project.data.tags}
+          urlLink={project.data.urlLink}
+          urlText={project.data.urlText}
         >
-          <div slot="description" class="project-content">
-            {project.body}
-          </div>
-          <img 
-            slot="image" 
-            src={project.image} 
-            alt={`${project.title} screenshot`} 
-          />
+          <div slot="description" class="project-content" set:html={project.body} />
+          {project.data.image && (
+            <img 
+              slot="image" 
+              src={project.data.image} 
+              alt={`${project.data.title} screenshot`} 
+            />
+          )}
         </ProjectItem>
       </div>
     ))}
