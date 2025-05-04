@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectItem from '../components/ProjectItem.astro';
+
+const projects = [
+  {
+    title: "TripIt Vue Web app",
+    tags: ['VueJS', 'Docker', 'CloudFormation', 'Nginx', 'Auth', 'PHP', 'Jest', 'Cypress'],
+    image: "/assets/tripit.png",
+    body: "I am currently leading a dev team in developing TripIt's new Web Application built from the ground up in VueJS. My initial goal was to create a POC that integrates with TripIt's existing infrastructure of AWS ECS containers and CI/CD pipeline. Next, I deep dived into authentication mechanisms and created RFCs for team input. We decided upon industry best practices and chose cookie based mechanism over OAuth2 to reduce attack vectors."
+  },
+  {
+    title: "Geo Spatial Data Explorer",
+    tags: ['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox'],
+    image: "/assets/atlas.jpg",
+    body: "This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB."
+  }
+];
+---
+
+<Layout title="Projects | Murali Varma">
+  <h1>Projects</h1>
+  <p class="intro">
+    Here are some of the projects I've worked on over the years. This is a curated list of projects that I've found particularly interesting or challenging.
+  </p>
+
+  <div class="projects-list">
+    {projects.map((project) => (
+      <div class="project">
+        <h2>{project.title}</h2>
+        <ProjectItem 
+          tags={project.tags}
+        >
+          <div slot="description" class="project-content">
+            {project.body}
+          </div>
+          <img 
+            slot="image" 
+            src={project.image} 
+            alt={`${project.title} screenshot`} 
+          />
+        </ProjectItem>
+      </div>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 80ch;
+    line-height: 1.6;
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .project h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .project-content {
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .project h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style> 

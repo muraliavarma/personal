@@ -1,0 +1,33 @@
+{
+  "name": "murlax-personal",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Personal website for Murali Varma",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "migrate": "node scripts/migrate-vuepress-to-astro.js"
+  },
+  "dependencies": {
+    "astro": "^5.7.10",
+    "vue": "^3.4.15",
+    "@astrojs/vue": "^5.0.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "front-matter": "^4.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muraliavarma/personal.git"
+  },
+  "author": "Murali Varma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muraliavarma/personal/issues"
+  },
+  "homepage": "https://github.com/muraliavarma/personal#readme"
+}

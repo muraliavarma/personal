@@ -1,0 +1,139 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = '<murali></varma>', description = 'Personal website for Murali Varma' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<div class="header-content">
+				<div class="site-title">
+					<a href="/">{title}</a>
+				</div>
+				<nav>
+					<a href="/">Home</a>
+					<a href="/projects">Projects</a>
+					<a href="/about">About</a>
+					<a href="https://github.com/muraliavarma" target="_blank">Github</a>
+					<a href="https://www.linkedin.com/in/murlax/" target="_blank">LinkedIn</a>
+					<a href="https://murlax.com/resume" target="_blank">Resume</a>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<p>© {new Date().getFullYear()} Murali Varma</p>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primary-color: #499be7;
+		--text-color: #2c3e50;
+		--link-color: #3eaf7c;
+		--border-color: #eaecef;
+		--background-color: #ffffff;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+		color: var(--text-color);
+		background-color: var(--background-color);
+	}
+
+	a {
+		color: var(--link-color);
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	header {
+		background-color: var(--background-color);
+		border-bottom: 1px solid var(--border-color);
+		padding: 0.7rem 1.5rem;
+	}
+
+	.header-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.site-title {
+		font-size: 1.3rem;
+		font-weight: 600;
+	}
+
+	.site-title a {
+		color: var(--text-color);
+	}
+
+	.site-title a:hover {
+		text-decoration: none;
+	}
+
+	nav {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem;
+	}
+
+	footer {
+		border-top: 1px solid var(--border-color);
+		padding: 1rem;
+		text-align: center;
+		font-size: 0.9rem;
+		color: #666;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	@media (max-width: 768px) {
+		.header-content {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		nav {
+			margin-top: 0.5rem;
+		}
+	}
+</style>
