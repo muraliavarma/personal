@@ -1,5 +1,6 @@
 ---
 import '../assets/markdown.css';
+import DarkModeSwitch from '../components/DarkModeSwitch.astro';
 
 interface Props {
 	title?: string;
@@ -22,6 +23,7 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<script is:inline src="/theme-script.js"></script>
 		<title>{title}</title>
 	</head>
 	<body>
@@ -30,14 +32,17 @@ const {
 				<div class="site-title">
 					<a href="/">{title}</a>
 				</div>
-				<nav>
-					<a href="/">Home</a>
-					<a href="/projects">Projects</a>
-					<a href="/about">About</a>
-					<a href="https://github.com/muraliavarma" target="_blank">Github</a>
-					<a href="https://www.linkedin.com/in/murlax/" target="_blank">LinkedIn</a>
-					<a href="https://murlax.com/resume" target="_blank">Resume</a>
-				</nav>
+				<div class="nav-container">
+					<nav>
+						<a href="/">Home</a>
+						<a href="/projects">Projects</a>
+						<a href="/about">About</a>
+						<a href="https://github.com/muraliavarma" target="_blank">Github</a>
+						<a href="https://www.linkedin.com/in/murlax/" target="_blank">LinkedIn</a>
+						<a href="https://murlax.com/resume" target="_blank">Resume</a>
+					</nav>
+					<DarkModeSwitch />
+				</div>
 			</div>
 		</header>
 		<main class={isMarkdown ? 'markdown-content' : ''}>
@@ -65,6 +70,29 @@ const {
 		--warning-color: #f59e0b; /* Amber 500 */
 		--error-color: #ef4444; /* Red 500 */
 		--code-bg: #f1f5f9; /* Slate 100 */
+	}
+	
+	/* Dark mode variables */
+	html.dark {
+		--primary-color: #818cf8; /* Lighter Indigo */
+		--primary-dark: #6366f1;
+		--primary-light: #a5b4fc;
+		--text-color: #e2e8f0; /* Slate 200 */
+		--text-light: #94a3b8; /* Slate 400 */
+		--link-color: #38bdf8; /* Sky 400 */
+		--link-hover: #7dd3fc; /* Sky 300 */
+		--border-color: #334155; /* Slate 700 */
+		--background-color: #0f172a; /* Slate 900 */
+		--background-alt: #1e293b; /* Slate 800 */
+		--success-color: #34d399; /* Emerald 400 */
+		--warning-color: #fbbf24; /* Amber 400 */
+		--error-color: #f87171; /* Red 400 */
+		--code-bg: #1e293b; /* Slate 800 */
+		
+		/* Dark mode specific variables */
+		--dark-bg: #0f172a; /* Slate 900 */
+		--dark-text: #e2e8f0; /* Slate 200 */
+		--dark-border: #475569; /* Slate 600 */
 	}
 
 	* {
@@ -98,6 +126,7 @@ const {
 		border-bottom: 1px solid var(--border-color);
 		padding: 1rem 1.5rem;
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+		transition: background-color 0.3s ease, border-color 0.3s ease;
 	}
 
 	.header-content {
@@ -105,6 +134,11 @@ const {
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.nav-container {
+		display: flex;
 		align-items: center;
 	}
 
@@ -131,6 +165,7 @@ const {
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 2rem 1.5rem;
+		transition: color 0.3s ease, background-color 0.3s ease;
 	}
 
 	footer {
@@ -140,6 +175,7 @@ const {
 		font-size: 0.9rem;
 		color: var(--text-light);
 		background-color: var(--background-alt);
+		transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 	}
 
 	img {
@@ -153,7 +189,20 @@ const {
 			gap: 0.5rem;
 		}
 
+		.nav-container {
+			flex-direction: column;
+			align-items: flex-start;
+			width: 100%;
+		}
+
 		nav {
+			margin-top: 0.5rem;
+			flex-wrap: wrap;
+			width: 100%;
+		}
+		
+		.theme-switch-wrapper {
+			margin-left: 0;
 			margin-top: 0.5rem;
 		}
 	}

@@ -44,8 +44,9 @@ const { tags, urlLink, urlText } = Astro.props;
   margin-bottom: 2rem;
   border-radius: 8px;
   background-color: var(--background-color);
+  border: 1px solid var(--border-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .container:hover {
@@ -99,6 +100,7 @@ const { tags, urlLink, urlText } = Astro.props;
   padding: 0.5rem 0 1.5rem 0;
   line-height: 1.7;
   color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 .image {
@@ -137,5 +139,14 @@ const { tags, urlLink, urlText } = Astro.props;
   .link {
     align-self: flex-end;
   }
+}
+
+/* Dark mode specific adjustments */
+html.dark .container {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .container:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 </style> 
