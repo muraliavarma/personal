@@ -2,7 +2,7 @@
 title: Geo Spatial Data Explorer
 tags: ['VueJS', 'Python', 'Kubernetes', 'MongoDB', 'OpenSource', 'Jest', 'Tox']
 image: /assets/atlas.jpg
-sortOrder: 6
+sortOrder: 7
 ---
 
 This product startup aimed to present complex geospatial data in easy-to-understand formats of Tables and Maps. I worked as Full Stack Engineer, all the way from the UI in VueJS to the deployment in Kubernetes including the backend in Flask/Python and managing user data in MongoDB. 

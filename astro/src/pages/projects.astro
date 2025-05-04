@@ -1,13 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ContactFooter from '../components/ContactFooter.astro';
 
 // Get all projects from the content collection
 const allProjects = await getCollection('projects');
-// Sort by sortOrder
-const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+// Sort by sortOrder and render markdown to HTML
+const projects = await Promise.all(
+  allProjects
+    .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+    .map(async (project) => {
+      const rendered = await render(project);
+      return {
+        ...project,
+        Content: rendered.Content
+      };
+    })
+);
 ---
 
 <Layout title="Projects | Murali Varma">
@@ -27,7 +37,9 @@ const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
           urlLink={project.data.urlLink}
           urlText={project.data.urlText}
         >
-          <div slot="description" class="project-content" set:html={project.body} />
+          <div slot="description" class="project-content">
+            <project.Content />
+          </div>
           {project.data.image && (
             <img 
               slot="image" 

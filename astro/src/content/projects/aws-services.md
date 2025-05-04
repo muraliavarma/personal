@@ -1,7 +1,7 @@
 ---
 title: Cloud Infrastructure & Recovery (AWS, SAP.IO, Zynga)
 tags: ['AWS', 'Lambda Functions', 'Cloudfront', 'EBS']
-sortOrder: 17
+sortOrder: 18
 ---
 
 Over the last couple of years, I have worked on multiple products within Amazon Web Services.

@@ -2,7 +2,7 @@
 title: Network Bandwidth Visualization
 tags: ['Flash', 'Network']
 image: /assets/cwg.png
-sortOrder: 12
+sortOrder: 13
 ---
 
 A huge network of routers had to be built for live TV feed transmission from different stadiums during the Commonwealth Games. The tool that I developed helped identify suitable positions for backup links, bandwidth utilization of every link and points of failure in the network. It also helped track primary and backup paths of individual TV feeds and provided a simple interface to monitor large amounts of live information in a browser window.
