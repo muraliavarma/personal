@@ -4,7 +4,7 @@ tags: ['Unity', 'AI', 'NodeJS']
 image: /assets/shapesAI.png
 urlLink: https://github.com/muraliavarma/ShapesAI
 urlText: Github
-sortOrder: 8
+sortOrder: 7
 ---
 
 In this project, we created a game where we controlled a simple shape that required us to solve puzzles. The interesting thing was that some puzzles were only partially solvable by the player, the remaining part required a companion AI.

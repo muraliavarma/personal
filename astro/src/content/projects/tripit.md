@@ -2,7 +2,7 @@
 title: TripIt Vue Web app
 tags: ['VueJS', 'Docker', 'CloudFormation', 'Nginx', 'Auth', 'PHP', 'Jest', 'Cypress']
 image: /assets/tripit.png
-sortOrder: 1
+sortOrder: 3
 ---
 
 I am currently leading a dev team in developing TripIt's new Web Application built from the ground up in VueJS. My initial goal was to create a POC that integrates with TripIt's existing infrastructure of AWS ECS containers and CI/CD pipeline. Next, I deep dived into authentication mechanisms and created RFCs for team input. We decided upon industry best practices and chose cookie based mechanism over OAuth2 to reduce attack vectors.

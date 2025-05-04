@@ -2,7 +2,7 @@
 title: Slots Challenges
 tags: ['ReactJS', 'Redux', 'PHP']
 image: /assets/slots.jpg
-sortOrder: 7
+sortOrder: 4
 ---
 
 Designed and implemented the core logic in PHP for a framework in Zynga Hit It Rich! Slots game that presents players with tasks/challenges which when completed grants them rewards. This has been extended and used for multiple features and events, all configurable from a single feature-rich admin page made in React JS and Redux.

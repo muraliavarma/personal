@@ -4,7 +4,7 @@ tags: ['ThreeJS', 'AngularJS', 'NodeJS']
 image: /assets/raytracer.png
 urlLink: https://github.com/muraliavarma/raytracer_nodejs
 urlText: Github
-sortOrder: 3
+sortOrder: 15
 ---
 
 In this project, I created the rendering pipeline in JavaScript in a single HTML page. The user can change position of object and lights in 3D space through the browser and see results immediately. The steps involved are world transformation, lighting calculation, view transformation, perspective transformation, z-clipping, culling, z-sorting and resterization.

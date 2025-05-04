@@ -4,7 +4,7 @@ tags: ['ThreeJS', 'JavaScript', 'L-System']
 image: /assets/forest.png
 urlLink: https://github.com/muraliavarma/forest_lsystem
 urlText: Github
-sortOrder: 11
+sortOrder: 9
 ---
 
 In this project, we created different types of tree structures using L-systems. In a forest, many such trees compete for light and fight against gravity (resulting in sagging trees due to "geotropism")

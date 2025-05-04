@@ -1,8 +1,8 @@
 ---
-title: Social Authentication
+title: Multi-Provider Social Auth & Email System
 tags: ['PassportJS', 'AWS', 'SES', 'VueJS', 'NodeJS']
 image: /assets/passport.jpg
-sortOrder: 4
+sortOrder: 16
 ---
 
 This website uses multiple social platforms for logging into the application including Facebook, Google and Twitch. I used PassportJS and NodeJS to accomplish the Oauth2.0 and Oauth1.0 (for Twitter) flows.

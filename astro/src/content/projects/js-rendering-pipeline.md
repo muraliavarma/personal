@@ -2,7 +2,7 @@
 title: JS Rendering Pipeline
 tags: ['JavaScript', 'Rendering']
 image: /assets/gpu.png
-sortOrder: 10
+sortOrder: 8
 ---
 
 In this project, I created the rendering pipeline in JavaScript in a single HTML page. The user can change position of object and lights in 3D space through the browser and see results immediately. The steps involved are world transformation, lighting calculation, view transformation, perspective transformation, z-clipping, culling, z-sorting and resterization.
