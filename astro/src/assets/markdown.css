@@ -1,0 +1,126 @@
+/* Markdown Content Styling */
+.markdown-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.markdown-content h1 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.markdown-content h2 {
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.markdown-content p {
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.markdown-content a {
+  color: var(--link-color);
+  font-weight: 500;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.markdown-content a:hover {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+}
+
+.markdown-content code {
+  background-color: var(--code-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid var(--primary-light);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+.markdown-content hr {
+  height: 2px;
+  background-color: var(--border-color);
+  border: none;
+  margin: 2rem 0;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Special styling for skill lists */
+.markdown-content ul li strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .markdown-content h1 {
+    font-size: 2.4rem;
+  }
+  
+  .markdown-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .markdown-content h3 {
+    font-size: 1.3rem;
+  }
+} 

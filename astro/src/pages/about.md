@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: About Me
+isMarkdown: true
 ---
 
 # About Me

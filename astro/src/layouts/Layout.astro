@@ -1,10 +1,17 @@
 ---
+import '../assets/markdown.css';
+
 interface Props {
 	title?: string;
 	description?: string;
+	isMarkdown?: boolean;
 }
 
-const { title = '<murali></varma>', description = 'Personal website for Murali Varma' } = Astro.props;
+const { 
+	title = '<murali></varma>', 
+	description = 'Personal website for Murali Varma',
+	isMarkdown = false
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -33,7 +40,7 @@ const { title = '<murali></varma>', description = 'Personal website for Murali V
 				</nav>
 			</div>
 		</header>
-		<main>
+		<main class={isMarkdown ? 'markdown-content' : ''}>
 			<slot />
 		</main>
 		<footer>
@@ -44,11 +51,20 @@ const { title = '<murali></varma>', description = 'Personal website for Murali V
 
 <style is:global>
 	:root {
-		--primary-color: #499be7;
-		--text-color: #2c3e50;
-		--link-color: #3eaf7c;
-		--border-color: #eaecef;
+		--primary-color: #6366f1; /* Indigo */
+		--primary-dark: #4f46e5;
+		--primary-light: #818cf8;
+		--text-color: #1e293b; /* Slate 800 */
+		--text-light: #64748b; /* Slate 500 */
+		--link-color: #0ea5e9; /* Sky 500 */
+		--link-hover: #0284c7; /* Sky 600 */
+		--border-color: #e2e8f0; /* Slate 200 */
 		--background-color: #ffffff;
+		--background-alt: #f8fafc; /* Slate 50 */
+		--success-color: #10b981; /* Emerald 500 */
+		--warning-color: #f59e0b; /* Amber 500 */
+		--error-color: #ef4444; /* Red 500 */
+		--code-bg: #f1f5f9; /* Slate 100 */
 	}
 
 	* {
@@ -69,16 +85,19 @@ const { title = '<murali></varma>', description = 'Personal website for Murali V
 	a {
 		color: var(--link-color);
 		text-decoration: none;
+		transition: color 0.2s ease;
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--link-hover);
+		text-decoration: none;
 	}
 
 	header {
 		background-color: var(--background-color);
 		border-bottom: 1px solid var(--border-color);
-		padding: 0.7rem 1.5rem;
+		padding: 1rem 1.5rem;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 	}
 
 	.header-content {
@@ -95,7 +114,8 @@ const { title = '<murali></varma>', description = 'Personal website for Murali V
 	}
 
 	.site-title a {
-		color: var(--text-color);
+		color: var(--primary-color);
+		font-weight: 700;
 	}
 
 	.site-title a:hover {
@@ -115,10 +135,11 @@ const { title = '<murali></varma>', description = 'Personal website for Murali V
 
 	footer {
 		border-top: 1px solid var(--border-color);
-		padding: 1rem;
+		padding: 1.5rem;
 		text-align: center;
 		font-size: 0.9rem;
-		color: #666;
+		color: var(--text-light);
+		background-color: var(--background-alt);
 	}
 
 	img {

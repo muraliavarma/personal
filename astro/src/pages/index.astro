@@ -58,41 +58,47 @@ const featuredProjects = allProjects
 		max-width: 800px;
 		margin: 4rem auto;
 		text-align: center;
+		padding: 0 1.5rem;
 	}
 	
 	h1 {
-		font-size: 3rem;
+		font-size: 3.5rem;
 		margin-bottom: 0.5rem;
-		color: var(--text-color);
+		color: var(--primary-color);
+		font-weight: 800;
 	}
 	
 	h2 {
-		font-size: 1.5rem;
-		font-weight: 400;
+		font-size: 1.6rem;
+		font-weight: 500;
 		margin-bottom: 2rem;
-		color: #666;
+		color: var(--text-light);
+		letter-spacing: 0.5px;
 	}
 	
 	p {
-		line-height: 1.6;
+		line-height: 1.8;
 		margin-bottom: 1.5rem;
 		font-size: 1.1rem;
+		color: var(--text-color);
 	}
 
 	.cta-buttons {
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
+		gap: 1.2rem;
 		margin-top: 2.5rem;
 	}
 
 	.cta-button {
 		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		border-radius: 4px;
-		font-weight: 500;
-		transition: all 0.2s ease;
+		padding: 0.85rem 1.8rem;
+		border-radius: 6px;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all 0.3s ease;
 		text-decoration: none;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 	}
 
 	.cta-button.primary {
@@ -101,42 +107,62 @@ const featuredProjects = allProjects
 	}
 
 	.cta-button.primary:hover {
-		background-color: #3b87d0;
+		background-color: var(--primary-dark);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 		text-decoration: none;
 	}
 
 	.cta-button:not(.primary) {
-		border: 1px solid var(--border-color);
+		border: 2px solid var(--border-color);
 		color: var(--text-color);
 	}
 
 	.cta-button:not(.primary):hover {
-		background-color: #f5f5f5;
+		border-color: var(--primary-light);
+		background-color: var(--background-alt);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 		text-decoration: none;
 	}
 
+	.projects {
+		padding: 2rem 1.5rem;
+		background-color: var(--background-alt);
+		border-radius: 12px;
+		margin: 4rem 0;
+	}
+	
+	.projects h2 {
+		color: var(--primary-color);
+		font-weight: 700;
+		margin-top: 2rem;
+		font-size: 1.8rem;
+		text-align: center;
+	}
+
 	.see-more {
-		margin: 3rem 0;
+		margin: 3.5rem 0 1.5rem;
 		text-align: center;
 	}
 
 	@media (max-width: 768px) {
 		.intro {
-			margin: 2rem auto;
-			padding: 0 1rem;
+			margin: 2.5rem auto;
 		}
 
 		h1 {
-			font-size: 2.5rem;
+			font-size: 2.8rem;
 		}
 
 		h2 {
-			font-size: 1.2rem;
+			font-size: 1.3rem;
 		}
 
 		.cta-buttons {
 			flex-direction: column;
 			align-items: center;
+			gap: 0.8rem;
 		}
 
 		.cta-button {

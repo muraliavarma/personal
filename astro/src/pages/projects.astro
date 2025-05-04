@@ -10,10 +10,12 @@ const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
 ---
 
 <Layout title="Projects | Murali Varma">
-  <h1>Projects</h1>
-  <p class="intro">
-    Here are some of the projects I've worked on over the years. This is a curated list of projects that I've found particularly interesting or challenging.
-  </p>
+  <div class="page-header">
+    <h1>Projects</h1>
+    <p class="intro">
+      Here are some of the projects I've worked on over the years. This is a curated list of projects that I've found particularly interesting or challenging.
+    </p>
+  </div>
 
   <div class="projects-list">
     {projects.map((project) => (
@@ -40,44 +42,65 @@ const projects = allProjects.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
 
 <style>
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 800;
+  }
+
+  .page-header {
+    text-align: center;
+    margin: 2rem 0 4rem;
   }
 
   .intro {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    max-width: 80ch;
-    line-height: 1.6;
+    font-size: 1.2rem;
+    margin: 1.5rem auto 0;
+    max-width: 70ch;
+    line-height: 1.7;
+    color: var(--text-light);
   }
 
   .projects-list {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
+    margin-bottom: 3rem;
   }
 
   .project h2 {
     margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 700;
   }
 
   .project-content {
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   @media (max-width: 768px) {
     h1 {
-      font-size: 2rem;
+      font-size: 2.4rem;
+    }
+
+    .page-header {
+      margin: 1.5rem 0 3rem;
     }
 
     .intro {
-      font-size: 1rem;
+      font-size: 1.1rem;
+      padding: 0 1rem;
     }
 
     .project h2 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+    
+    .projects-list {
+      gap: 3rem;
     }
   }
 </style> 
