@@ -15,12 +15,12 @@
 
 <script>
   // Function to set the theme and update the UI
-  function setTheme(theme) {
+  function setTheme(theme: 'light' | 'dark' | 'system') {
     // Save to localStorage
     localStorage.setItem('theme', theme);
     
     // Update the select element
-    const select = document.getElementById('theme-select');
+    const select = document.getElementById('theme-select') as HTMLSelectElement;
     if (select) {
       select.value = theme;
     }
@@ -30,7 +30,7 @@
   }
   
   // Function to apply theme
-  function applyTheme(theme) {
+  function applyTheme(theme: 'light' | 'dark' | 'system') {
     const isDark = 
       theme === 'dark' || 
       (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -44,10 +44,10 @@
   
   // Setup on page load
   document.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('theme-select');
+    const select = document.getElementById('theme-select') as HTMLSelectElement;
     
     // Get saved theme or default to system
-    const savedTheme = localStorage.getItem('theme') || 'system';
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system' || 'system';
     
     // Initialize the select value
     if (select) {
@@ -60,7 +60,7 @@
     // Add event listener for changes
     select?.addEventListener('change', (e) => {
       const target = e.target as HTMLSelectElement;
-      setTheme(target.value);
+      setTheme(target.value as 'light' | 'dark' | 'system');
     });
     
     // Listen for system changes

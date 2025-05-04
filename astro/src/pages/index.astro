@@ -10,82 +10,378 @@ const featuredProjects = allProjects
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
   .slice(0, 3);
 
+const skills = [
+  { name: 'JavaScript', icon: '📜' },
+  { name: 'TypeScript', icon: '🔷' },
+  { name: 'React', icon: '⚛️' },
+  { name: 'Vue', icon: '🟢' },
+  { name: 'Node.js', icon: '🟩' },
+  { name: 'Python', icon: '🐍' },
+  { name: 'CSS/SCSS', icon: '🎨' },
+  { name: 'GraphQL', icon: '⬢' },
+  { name: 'AWS', icon: '☁️' },
+  { name: 'Docker', icon: '🐳' }
+];
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<section class="intro">
-		<h1>Murali Varma</h1>
-		<h2>Full Stack Developer</h2>
-		<p>
-			I am a Full Stack Developer living in the Bay Area. I love keeping myself up-to-date with the latest front-end technologies and build backends that scale with it.
-		</p>
-		<p>
-			In fact, when I had first made this website, it was in <a href="https://angularjs.org/">AngularJS</a>. Later I moved to a minimal <a href="https://bulma.io/">Bulma</a> framework. Then it used <a href="https://vuepress.vuejs.org/">VuePress</a> deployed on <a href="https://www.netlify.com/">Netlify</a>. Now it's built with <a href="https://astro.build">Astro</a>.
-		</p>
-		<div class="cta-buttons">
-			<a href="/projects" class="cta-button primary">View My Projects</a>
-			<a href="/about" class="cta-button">About Me</a>
+	<section class="hero">
+		<div class="hero-content">
+			<div class="hero-text">
+				<h1>Hi, I'm <span class="highlight">Murali Varma</span></h1>
+				<h2>Full Stack Developer</h2>
+				<p class="intro-text">
+					I create scalable and responsive web applications using modern technologies. Based in the Bay Area, I'm passionate about building elegant solutions to complex problems.
+				</p>
+				<div class="cta-buttons">
+					<a href="/projects" class="cta-button primary">View My Projects</a>
+					<a href="/about" class="cta-button">About Me</a>
+				</div>
+			</div>
+			<div class="hero-visual">
+				<div class="code-snippet">
+					<pre><code>
+<span class="code-keyword">const</span> <span class="code-variable">developer</span> = &#123;
+  name: <span class="code-string">'Murali Varma'</span>,
+  skills: [<span class="code-string">'JavaScript'</span>, <span class="code-string">'TypeScript'</span>, <span class="code-string">'React'</span>],
+  passion: <span class="code-string">'Building web experiences'</span>,
+  learning: <span class="code-string">'Always'</span>
+&#125;;</code></pre>
+				</div>
+			</div>
 		</div>
 	</section>
 
-	<section class="projects">
-		{featuredProjects.map((project) => (
-			<>
-				<h2>{project.data.title}</h2>
-				<ProjectItem 
-					tags={project.data.tags} 
-					urlLink={project.data.urlLink}
-					urlText={project.data.urlText}
-				>
-					<div slot="description" set:html={project.body} />
-					{project.data.image && (
-						<img slot="image" src={project.data.image} alt={`${project.data.title} screenshot`} />
-					)}
-				</ProjectItem>
-			</>
-		))}
-		
-		<div class="see-more">
-			<a href="/projects" class="cta-button primary">See All Projects</a>
+	<section class="journey">
+		<div class="wave-divider">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+			</svg>
+		</div>
+		<div class="container">
+			<h3>My Tech Journey</h3>
+			<p>
+				When I first built this website, it was in <a href="https://angularjs.org/">AngularJS</a>. Later I moved to a minimal <a href="https://bulma.io/">Bulma</a> framework. Then it used <a href="https://vuepress.vuejs.org/">VuePress</a> deployed on <a href="https://www.netlify.com/">Netlify</a>. Now it's built with <a href="https://astro.build">Astro</a> - constantly evolving with modern web technology.
+			</p>
+			
+			<div class="skills-container">
+				<h4>Skills & Technologies</h4>
+				<div class="skills-grid">
+					{skills.map(skill => (
+						<div class="skill-item">
+							<span class="skill-icon">{skill.icon}</span>
+							<span class="skill-name">{skill.name}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="featured-projects">
+		<div class="container">
+			<h3>Featured Projects</h3>
+			<div class="projects-grid">
+				{featuredProjects.map((project) => (
+					<div class="project-card">
+						<h4>{project.data.title}</h4>
+						<ProjectItem 
+							tags={project.data.tags} 
+							urlLink={project.data.urlLink}
+							urlText={project.data.urlText}
+						>
+							<div slot="description" set:html={project.body} />
+							{project.data.image && (
+								<img slot="image" src={project.data.image} alt={`${project.data.title} screenshot`} loading="lazy" />
+							)}
+						</ProjectItem>
+					</div>
+				))}
+			</div>
+			
+			<div class="see-more">
+				<a href="/projects" class="cta-button primary">See All Projects</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="contact">
+		<div class="container">
+			<h3>Let's Connect</h3>
+			<p>Have a project in mind or just want to chat about tech? Find me on these platforms:</p>
+			<div class="social-links">
+				<a href="https://github.com/muraliavarma" target="_blank" class="social-link">
+					<span class="icon">💻</span> GitHub
+				</a>
+				<a href="https://www.linkedin.com/in/murlax/" target="_blank" class="social-link">
+					<span class="icon">🔗</span> LinkedIn
+				</a>
+				<a href="https://murlax.com/resume" target="_blank" class="social-link">
+					<span class="icon">📄</span> Resume
+				</a>
+			</div>
 		</div>
 	</section>
 </Layout>
 
 <style>
-	.intro {
-		max-width: 800px;
-		margin: 4rem auto;
-		text-align: center;
-		padding: 0 1.5rem;
+	/* Hero Section */
+	.hero {
+		padding: 5rem 1.5rem 3rem;
+		overflow: hidden;
 	}
-	
+
+	.hero-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.hero-text {
+		flex: 1;
+	}
+
+	.hero-visual {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+
+	.code-snippet {
+		background-color: var(--code-bg);
+		padding: 1.5rem;
+		border-radius: 10px;
+		width: 100%;
+		max-width: 450px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		overflow-x: auto;
+		transition: all 0.3s ease;
+		transform: rotate(2deg);
+		border: 1px solid var(--border-color);
+	}
+
+	.code-snippet pre {
+		margin: 0;
+	}
+
+	.code-keyword {
+		color: #9333ea; /* Purple */
+	}
+
+	.code-variable {
+		color: #0891b2; /* Cyan */
+	}
+
+	.code-string {
+		color: #16a34a; /* Green */
+	}
+
+	.highlight {
+		position: relative;
+		display: inline-block;
+		color: var(--primary-color);
+	}
+
+	.highlight::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 8px;
+		background-color: var(--primary-light);
+		z-index: -1;
+		opacity: 0.4;
+	}
+
 	h1 {
 		font-size: 3.5rem;
 		margin-bottom: 0.5rem;
-		color: var(--primary-color);
+		color: var(--text-color);
 		font-weight: 800;
+		line-height: 1.1;
 	}
 	
 	h2 {
 		font-size: 1.6rem;
 		font-weight: 500;
-		margin-bottom: 2rem;
+		margin-bottom: 1.5rem;
 		color: var(--text-light);
 		letter-spacing: 0.5px;
 	}
-	
-	p {
-		line-height: 1.8;
+
+	h3 {
+		font-size: 2rem;
+		font-weight: 700;
 		margin-bottom: 1.5rem;
-		font-size: 1.1rem;
-		color: var(--text-color);
+		color: var(--primary-color);
+		text-align: center;
 	}
 
-	.cta-buttons {
+	h4 {
+		font-size: 1.3rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+		color: var(--text-color);
+	}
+	
+	.intro-text {
+		line-height: 1.8;
+		margin-bottom: 1.5rem;
+		font-size: 1.2rem;
+		color: var(--text-color);
+		max-width: 600px;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	/* Journey Section */
+	.journey {
+		padding: 3rem 0 4rem;
+		position: relative;
+		background-color: var(--background-alt);
+	}
+
+	.wave-divider {
+		position: absolute;
+		top: -2px;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		line-height: 0;
+	}
+
+	.wave-divider svg {
+		position: relative;
+		display: block;
+		width: calc(100% + 1.3px);
+		height: 60px;
+	}
+
+	.wave-divider path {
+		fill: var(--background-color);
+	}
+
+	.journey p {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 3rem;
+		line-height: 1.8;
+		font-size: 1.1rem;
+	}
+
+	/* Skills Section */
+	.skills-container {
+		margin-top: 3rem;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.skill-item {
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+		background-color: var(--background-color);
+		border-radius: 8px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		border: 1px solid var(--border-color);
+	}
+
+	.skill-item:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+
+	.skill-icon {
+		font-size: 1.5rem;
+		margin-right: 0.7rem;
+	}
+
+	.skill-name {
+		font-weight: 500;
+	}
+
+	/* Featured Projects */
+	.featured-projects {
+		padding: 5rem 0;
+	}
+
+	.projects-grid {
+		display: grid;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+
+	.project-card h4 {
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	/* Contact Section */
+	.contact {
+		padding: 4rem 0 5rem;
+		background-color: var(--background-alt);
+		border-radius: 16px 16px 0 0;
+	}
+
+	.contact p {
+		text-align: center;
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.social-links {
 		display: flex;
 		justify-content: center;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+
+	.social-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.8rem 1.5rem;
+		background-color: var(--background-color);
+		border-radius: 8px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+		border: 1px solid var(--border-color);
+		font-size: 1rem;
+	}
+
+	.social-link:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		border-color: var(--primary-light);
+	}
+
+	.icon {
+		font-size: 1.2rem;
+	}
+
+	/* CTA Buttons */
+	.cta-buttons {
+		display: flex;
 		gap: 1.2rem;
 		margin-top: 2.5rem;
 	}
@@ -126,29 +422,39 @@ const featuredProjects = allProjects
 		text-decoration: none;
 	}
 
-	.projects {
-		padding: 2rem 1.5rem;
-		background-color: var(--background-alt);
-		border-radius: 12px;
-		margin: 4rem 0;
-	}
-	
-	.projects h2 {
-		color: var(--primary-color);
-		font-weight: 700;
-		margin-top: 2rem;
-		font-size: 1.8rem;
-		text-align: center;
-	}
-
 	.see-more {
 		margin: 3.5rem 0 1.5rem;
 		text-align: center;
 	}
 
+	/* Dark mode specific adjustments */
+	html.dark .code-snippet {
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	html.dark .code-keyword {
+		color: #c084fc; /* Lighter Purple */
+	}
+
+	html.dark .code-variable {
+		color: #22d3ee; /* Lighter Cyan */
+	}
+
+	html.dark .code-string {
+		color: #4ade80; /* Lighter Green */
+	}
+
+	html.dark .social-link:hover {
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+	}
+
 	@media (max-width: 768px) {
-		.intro {
-			margin: 2.5rem auto;
+		.hero-content {
+			flex-direction: column;
+		}
+
+		.hero {
+			padding: 3rem 1.5rem 2rem;
 		}
 
 		h1 {
@@ -159,15 +465,32 @@ const featuredProjects = allProjects
 			font-size: 1.3rem;
 		}
 
+		.code-snippet {
+			transform: rotate(0);
+			margin-top: 2rem;
+			max-width: 100%;
+		}
+
 		.cta-buttons {
 			flex-direction: column;
-			align-items: center;
+			align-items: flex-start;
 			gap: 0.8rem;
 		}
 
-		.cta-button {
+		.social-links {
+			flex-direction: column;
+			gap: 1rem;
+			align-items: center;
+		}
+
+		.social-link {
 			width: 100%;
-			text-align: center;
+			max-width: 250px;
+			justify-content: center;
+		}
+
+		.skills-grid {
+			grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
 		}
 	}
 </style>
