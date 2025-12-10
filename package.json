@@ -11,14 +11,15 @@
     "migrate": "node scripts/migrate-vuepress-to-astro.js"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/vue": "^5.0.0",
     "astro": "^5.7.10",
-    "vue": "^3.4.15",
-    "@astrojs/vue": "^5.0.0"
+    "vue": "^3.4.15"
   },
   "devDependencies": {
+    "front-matter": "^4.0.2",
     "fs-extra": "^11.2.0",
-    "glob": "^10.3.10",
-    "front-matter": "^4.0.2"
+    "glob": "^10.3.10"
   },
   "repository": {
     "type": "git",
