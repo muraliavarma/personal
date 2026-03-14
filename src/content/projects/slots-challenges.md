@@ -5,6 +5,7 @@ image: /assets/slots.jpg
 sortOrder: 4
 ---
 
-Designed and implemented the core logic in PHP for a framework in Zynga Hit It Rich! Slots game that presents players with tasks/challenges which when completed grants them rewards. This has been extended and used for multiple features and events, all configurable from a single feature-rich admin page made in React JS and Redux.
+Built the core challenge/reward framework for Zynga's Hit It Rich! Slots — PHP backend powering timed events with a React/Redux admin dashboard.
 
-Since these features are timed events, servers were usually under heavy load during this time. To mitigate this, I implemented a caching strategy for storing the latest configuration files in each web server as well as in-memory. 
+- Framework became the foundation for multiple live features and events, all configurable from a single admin page
+- Implemented multi-tier caching (per-server + in-memory) to handle load spikes during timed events

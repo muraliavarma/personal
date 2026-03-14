@@ -1,104 +1,124 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ContactFooter from '../components/ContactFooter.astro';
 
-// Get all projects from the content collection
 const allProjects = await getCollection('projects');
-// Sort by sortOrder and take the top 3 for the homepage
-const featuredProjects = allProjects
-  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
-  .slice(0, 3);
+const featuredProjects = await Promise.all(
+  allProjects
+    .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+    .slice(0, 3)
+    .map(async (project) => {
+      const rendered = await render(project);
+      return { ...project, Content: rendered.Content };
+    })
+);
 
-const skills = [
-  { name: 'TypeScript', icon: '🔷' },
-  { name: 'React', icon: '⚛️' },
-  { name: 'Next.js', icon: '⏭️' },
-  { name: 'Vue', icon: '🟢' },
-  { name: 'Node.js', icon: '🟩' },
-  { name: 'Python', icon: '🐍' },
-  { name: 'CSS/SCSS', icon: '🎨' },
-  { name: 'GraphQL', icon: '⬢' },
-  { name: 'AWS', icon: '☁️' },
-  { name: 'Cloudflare', icon: '🌐' },
-  { name: 'AI', icon: '🤖' },
-  { name: 'Oracle', icon: '🟠' },
-  { name: 'Shopify', icon: '🛒' }
+const skillCategories = [
+  {
+    label: 'Frontend',
+    color: '#3b82f6',
+    bg: 'rgba(59, 130, 246, 0.08)',
+    border: 'rgba(59, 130, 246, 0.2)',
+    skills: ['React', 'TypeScript', 'Next.js', 'Vue', 'CSS/SCSS']
+  },
+  {
+    label: 'Backend',
+    color: '#f97316',
+    bg: 'rgba(249, 115, 22, 0.08)',
+    border: 'rgba(249, 115, 22, 0.2)',
+    skills: ['Node.js', 'Python', 'GraphQL']
+  },
+  {
+    label: 'Cloud & Infrastructure',
+    color: '#eab308',
+    bg: 'rgba(234, 179, 8, 0.08)',
+    border: 'rgba(234, 179, 8, 0.2)',
+    skills: ['AWS', 'Cloudflare', 'Kubernetes', 'Docker']
+  },
+  {
+    label: 'AI & Tooling',
+    color: '#8b5cf6',
+    bg: 'rgba(139, 92, 246, 0.08)',
+    border: 'rgba(139, 92, 246, 0.2)',
+    skills: ['LLMs', 'AI-assisted Dev', 'Oracle', 'Shopify']
+  }
 ];
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
 	<section class="hero">
 		<div class="hero-content">
 			<div class="hero-text">
-				<h1>Hi, I'm <span class="highlight">Murali Varma</span></h1>
-				<h2>Full Stack Developer</h2>
-				<p class="intro-text">
-					I build modern, scalable web applications and cloud infrastructure using Next.js, React, AWS, Cloudflare, and more. My recent work focuses on fintech, travel, gaming, and AI-driven developer productivity—delivering solutions for high-impact, fast-moving industries. I have experience with LLMs, AI-assisted development, and enterprise systems with Oracle. Based in the Bay Area, I'm passionate about leveraging the latest tech to solve real-world problems, including recent initiatives in AI developer tooling and productivity.
+				<p class="hero-greeting reveal">Hi, I'm</p>
+				<h1 class="reveal reveal-delay-1"><span class="gradient-text">Murali Varma</span></h1>
+				<h2 class="reveal reveal-delay-2">Senior Staff Engineer</h2>
+				<p class="intro-text reveal reveal-delay-3">
+					I architect and build modern web platforms, cloud infrastructure, and AI-powered developer tools at scale. Specializing in fintech, travel, and gaming — from component systems to distributed backends.
 				</p>
-				<div class="cta-buttons">
-					<a href="/projects" class="cta-button primary">View My Projects</a>
-					<a href="/about" class="cta-button">About Me</a>
+				<div class="cta-buttons reveal reveal-delay-4">
+					<a href="/projects" class="cta-button primary">View Projects</a>
+					<a href="/about" class="cta-button secondary">About Me</a>
 				</div>
 			</div>
-			<div class="hero-visual">
-				<div class="code-snippet">
-					<pre><code>
-<span class="code-keyword">const</span> <span class="code-variable">developer</span> = &#123;
-  name: <span class="code-string">'Murali Varma'</span>,
-  skills: [<span class="code-string">'React'</span>, <span class="code-string">'AWS'</span>, <span class="code-string">'Cloudflare'</span>, <span class="code-string">'AI'</span>],
-  industries: [<span class="code-string">'Fintech'</span>, <span class="code-string">'Travel'</span>, <span class="code-string">'Gaming'</span>],
-  passion: <span class="code-string">'Scaling Modern Web Apps'</span>,
-  learning: <span class="code-string">'Always'</span>
-&#125;;</code></pre>
+			<div class="hero-visual reveal reveal-delay-2">
+				<div class="terminal">
+					<div class="terminal-header">
+						<div class="terminal-dots">
+							<span class="dot red"></span>
+							<span class="dot yellow"></span>
+							<span class="dot green"></span>
+						</div>
+						<span class="terminal-title">developer.ts</span>
+					</div>
+					<div class="terminal-body">
+						<pre><code><span class="ln"> 1</span>  <span class="kw">const</span> <span class="vr">developer</span> = &#123;
+<span class="ln"> 2</span>    name: <span class="str">'Murali Varma'</span>,
+<span class="ln"> 3</span>    role: <span class="str">'Senior Staff Engineer'</span>,
+<span class="ln"> 4</span>    stack: [<span class="str">'React'</span>, <span class="str">'Next.js'</span>, <span class="str">'AWS'</span>],
+<span class="ln"> 5</span>    focus: [<span class="str">'Fintech'</span>, <span class="str">'AI Tooling'</span>],
+<span class="ln"> 6</span>    passion: <span class="str">'Building at scale'</span>,
+<span class="ln"> 7</span>  &#125;;</code></pre>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="journey">
-		<div class="wave-divider">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-				<path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-			</svg>
-		</div>
+	<section class="expertise">
 		<div class="container">
-			<h3>My Tech Journey</h3>
-			<p>
-				My journey started with <a href="https://angularjs.org/">AngularJS</a> and evolved through <a href="https://bulma.io/">Bulma</a> and <a href="https://vuepress.vuejs.org/">VuePress</a>. Today, I specialize in building with <a href="https://nextjs.org/">Next.js</a> and <a href="https://react.dev/">React</a>, deploying robust infrastructure on <a href="https://aws.amazon.com/">AWS</a> and <a href="https://cloudflare.com/">Cloudflare</a>, and creating solutions for fintech, travel, and gaming. I also explore <a href="https://openai.com/">AI</a>, work with <a href="https://www.oracle.com/">Oracle</a> systems, and have experience integrating with <a href="https://shopify.com/">Shopify</a>. My site is now built with <a href="https://astro.build">Astro</a>—constantly evolving with modern web technology.
-			</p>
-			
-			<div class="skills-container">
-				<h4>Skills & Technologies</h4>
-				<div class="skills-grid">
-					{skills.map(skill => (
-						<div class="skill-item">
-							<span class="skill-icon">{skill.icon}</span>
-							<span class="skill-name">{skill.name}</span>
+			<h3 class="section-title reveal">Technical Expertise</h3>
+			<p class="section-subtitle reveal reveal-delay-1">Technologies and domains I've worked with across the full stack</p>
+			<div class="skill-categories reveal reveal-delay-2">
+				{skillCategories.map(cat => (
+					<div class="skill-category">
+						<h4 class="category-label" style={`color: ${cat.color}`}>{cat.label}</h4>
+						<div class="category-skills">
+							{cat.skills.map(skill => (
+								<span class="skill-badge" style={`color: ${cat.color}; background: ${cat.bg}; border-color: ${cat.border}`}>{skill}</span>
+							))}
 						</div>
-					))}
-				</div>
+					</div>
+				))}
 			</div>
 		</div>
 	</section>
 
 	<section class="featured-projects">
 		<div class="container">
-			<h3>Featured Projects</h3>
-			<div class="projects-grid">
+			<h3 class="section-title reveal">Featured Projects</h3>
+			<p class="section-subtitle reveal reveal-delay-1">Selected work from enterprise platforms to open-source tools</p>
+			<div class="projects-grid reveal reveal-delay-2">
 				{featuredProjects.map((project) => (
 					<div class="project-card">
 						<h4>{project.data.title}</h4>
-						<ProjectItem 
-							tags={project.data.tags} 
+						<ProjectItem
+							tags={project.data.tags}
 							urlLink={project.data.urlLink}
 							urlText={project.data.urlText}
 						>
-							<div slot="description" set:html={project.body} />
+							<div slot="description"><project.Content /></div>
 							{project.data.image && (
 								<img slot="image" src={project.data.image} alt={`${project.data.title} screenshot`} loading="lazy" />
 							)}
@@ -106,10 +126,7 @@ const skills = [
 					</div>
 				))}
 			</div>
-			<p style="text-align:center; margin-top:2rem; color:var(--text-light); font-size:1.1rem;">
-				<strong>Latest:</strong> Led Galileo's AI Developer Productivity Initiative and built the Config Assist PoC chatbot, leveraging LLMs and AI-assisted development to accelerate engineering workflows and simplify complex configuration analysis.
-			</p>
-			<div class="see-more">
+			<div class="see-more reveal">
 				<a href="/projects" class="cta-button primary">See All Projects</a>
 			</div>
 		</div>
@@ -121,21 +138,36 @@ const skills = [
 <style>
 	/* Hero Section */
 	.hero {
-		padding: 5rem 1.5rem 3rem;
+		position: relative;
+		padding: 7rem 1.5rem 6rem;
 		overflow: hidden;
+		background:
+			radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.1), transparent),
+			radial-gradient(ellipse 60% 40% at 90% 80%, rgba(6, 182, 212, 0.06), transparent);
+	}
+
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+		background-size: 60px 60px;
+		pointer-events: none;
 	}
 
 	.hero-content {
+		position: relative;
+		z-index: 1;
 		max-width: 1200px;
 		margin: 0 auto;
 		display: flex;
 		align-items: center;
-		gap: 2rem;
+		gap: 4rem;
 	}
 
-	.hero-text {
-		flex: 1;
-	}
+	.hero-text { flex: 1; }
 
 	.hero-visual {
 		flex: 1;
@@ -143,93 +175,162 @@ const skills = [
 		justify-content: center;
 	}
 
-	.code-snippet {
-		background-color: var(--code-bg);
-		padding: 1.5rem;
-		border-radius: 10px;
-		width: 100%;
-		max-width: 450px;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-		font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-		font-size: 0.9rem;
-		line-height: 1.6;
-		overflow-x: auto;
-		transition: all 0.3s ease;
-		transform: rotate(2deg);
-		border: 1px solid var(--border-color);
-	}
-
-	.code-snippet pre {
-		margin: 0;
-	}
-
-	.code-keyword {
-		color: #9333ea; /* Purple */
-	}
-
-	.code-variable {
-		color: #0891b2; /* Cyan */
-	}
-
-	.code-string {
-		color: #16a34a; /* Green */
-	}
-
-	.highlight {
-		position: relative;
-		display: inline-block;
-		color: var(--primary-color);
-	}
-
-	.highlight::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 8px;
-		background-color: var(--primary-light);
-		z-index: -1;
-		opacity: 0.4;
-	}
-
-	h1 {
-		font-size: 3.5rem;
-		margin-bottom: 0.5rem;
-		color: var(--text-color);
-		font-weight: 800;
-		line-height: 1.1;
-	}
-	
-	h2 {
-		font-size: 1.6rem;
+	.hero-greeting {
+		font-size: 1.1rem;
 		font-weight: 500;
-		margin-bottom: 1.5rem;
 		color: var(--text-light);
+		margin: 0 0 0.5rem;
 		letter-spacing: 0.5px;
 	}
 
-	h3 {
-		font-size: 2rem;
-		font-weight: 700;
-		margin-bottom: 1.5rem;
-		color: var(--primary-color);
-		text-align: center;
+	h1 {
+		font-size: 4rem;
+		margin: 0 0 0.75rem;
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: -1.5px;
 	}
 
-	h4 {
-		font-size: 1.3rem;
+	.gradient-text {
+		background: linear-gradient(135deg, #10b981, #14b8a6, #06b6d4, #10b981);
+		background-size: 300% 300%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: gradient-move 8s ease-in-out infinite;
+	}
+
+	@keyframes gradient-move {
+		0%, 100% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+	}
+
+	h2 {
+		font-size: 1.4rem;
+		font-weight: 500;
+		margin: 0 0 1.5rem;
+		color: var(--text-light);
+		letter-spacing: 0.3px;
+	}
+
+	.intro-text {
+		line-height: 1.75;
+		margin: 0 0 2rem;
+		font-size: 1.1rem;
+		color: var(--text-light);
+		max-width: 540px;
+	}
+
+	/* Terminal Code Block */
+	.terminal {
+		background: #0d1117;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+		width: 100%;
+		max-width: 460px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.terminal-header {
+		display: flex;
+		align-items: center;
+		padding: 12px 16px;
+		background: #161b22;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.terminal-dots {
+		display: flex;
+		gap: 6px;
+		margin-right: 12px;
+	}
+
+	.dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+	}
+
+	.dot.red { background: #ff5f57; }
+	.dot.yellow { background: #febc2e; }
+	.dot.green { background: #28c840; }
+
+	.terminal-title {
+		color: #8b949e;
+		font-size: 0.8rem;
+		font-family: 'JetBrains Mono', monospace;
+	}
+
+	.terminal-body {
+		padding: 1.25rem 1.5rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.85rem;
+		line-height: 1.7;
+		color: #e6edf3;
+	}
+
+	.terminal-body pre { margin: 0; }
+
+	.ln {
+		color: #484f58;
+		user-select: none;
+		display: inline-block;
+		width: 1.5em;
+		text-align: right;
+		margin-right: 1em;
+	}
+
+	.kw { color: #ff7b72; }
+	.vr { color: #79c0ff; }
+	.str { color: #a5d6ff; }
+
+	/* CTA Buttons */
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+	}
+
+	.cta-button {
+		display: inline-block;
+		padding: 0.8rem 1.6rem;
+		border-radius: 8px;
 		font-weight: 600;
-		margin-bottom: 1rem;
+		font-size: 0.95rem;
+		transition: all 0.25s ease;
+		text-decoration: none;
+	}
+
+	.cta-button.primary {
+		background: var(--primary-color);
+		color: white;
+		box-shadow: 0 2px 12px rgba(16, 185, 129, 0.25);
+	}
+
+	.cta-button.primary:hover {
+		background: var(--primary-dark);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+		color: white;
+	}
+
+	.cta-button.secondary {
+		border: 1.5px solid var(--border-color);
+		color: var(--text-color);
+		background: transparent;
+	}
+
+	.cta-button.secondary:hover {
+		border-color: var(--primary-light);
+		background: var(--background-alt);
+		transform: translateY(-2px);
 		color: var(--text-color);
 	}
-	
-	.intro-text {
-		line-height: 1.8;
-		margin-bottom: 1.5rem;
-		font-size: 1.2rem;
-		color: var(--text-color);
-		max-width: 600px;
+
+	/* Expertise Section */
+	.expertise {
+		padding: 5rem 0;
+		background-color: var(--background-alt);
 	}
 
 	.container {
@@ -238,76 +339,64 @@ const skills = [
 		padding: 0 1.5rem;
 	}
 
-	/* Journey Section */
-	.journey {
-		padding: 3rem 0 4rem;
-		position: relative;
-		background-color: var(--background-alt);
-	}
-
-	.wave-divider {
-		position: absolute;
-		top: -2px;
-		left: 0;
-		width: 100%;
-		overflow: hidden;
-		line-height: 0;
-	}
-
-	.wave-divider svg {
-		position: relative;
-		display: block;
-		width: calc(100% + 1.3px);
-		height: 60px;
-	}
-
-	.wave-divider path {
-		fill: var(--background-color);
-	}
-
-	.journey p {
+	.section-title {
+		font-size: 2rem;
+		font-weight: 700;
+		margin: 0 0 0.75rem;
+		color: var(--text-color);
 		text-align: center;
-		max-width: 800px;
+		letter-spacing: -0.5px;
+	}
+
+	.section-subtitle {
+		text-align: center;
+		color: var(--text-light);
+		font-size: 1.05rem;
 		margin: 0 auto 3rem;
-		line-height: 1.8;
-		font-size: 1.1rem;
+		max-width: 500px;
 	}
 
-	/* Skills Section */
-	.skills-container {
-		margin-top: 3rem;
-	}
-
-	.skills-grid {
+	.skill-categories {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-		gap: 1rem;
-		margin-top: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
 	}
 
-	.skill-item {
-		display: flex;
-		align-items: center;
-		padding: 1rem;
-		background-color: var(--background-color);
-		border-radius: 8px;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	.skill-category {
+		background: var(--background-color);
+		border-radius: 12px;
+		padding: 1.5rem;
+		box-shadow: var(--card-shadow);
 		border: 1px solid var(--border-color);
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
 	}
 
-	.skill-item:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	.skill-category:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--card-shadow-hover);
 	}
 
-	.skill-icon {
-		font-size: 1.5rem;
-		margin-right: 0.7rem;
+	.category-label {
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.8px;
+		margin: 0 0 1rem;
 	}
 
-	.skill-name {
+	.category-skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.skill-badge {
+		font-size: 0.85rem;
 		font-weight: 500;
+		padding: 0.35rem 0.75rem;
+		border-radius: 6px;
+		border: 1px solid;
+		white-space: nowrap;
 	}
 
 	/* Featured Projects */
@@ -318,86 +407,56 @@ const skills = [
 	.projects-grid {
 		display: grid;
 		gap: 2rem;
-		margin-top: 2rem;
+		margin-top: 1rem;
 	}
 
 	.project-card h4 {
 		text-align: center;
-		margin-bottom: 1rem;
-	}
-
-	/* CTA Buttons */
-	.cta-buttons {
-		display: flex;
-		gap: 1.2rem;
-		margin-top: 2.5rem;
-	}
-
-	.cta-button {
-		display: inline-block;
-		padding: 0.85rem 1.8rem;
-		border-radius: 6px;
+		margin: 0 0 1rem;
+		font-size: 1.3rem;
 		font-weight: 600;
-		font-size: 1rem;
-		transition: all 0.3s ease;
-		text-decoration: none;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-	}
-
-	.cta-button.primary {
-		background-color: var(--primary-color);
-		color: white;
-	}
-
-	.cta-button.primary:hover {
-		background-color: var(--primary-dark);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-		text-decoration: none;
-	}
-
-	.cta-button:not(.primary) {
-		border: 2px solid var(--border-color);
 		color: var(--text-color);
 	}
 
-	.cta-button:not(.primary):hover {
-		border-color: var(--primary-light);
-		background-color: var(--background-alt);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-		text-decoration: none;
-	}
-
 	.see-more {
-		margin: 3.5rem 0 1.5rem;
+		margin: 3rem 0 1.5rem;
 		text-align: center;
 	}
 
-	/* Dark mode specific adjustments */
-	html.dark .code-snippet {
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	/* Dark mode adjustments */
+	html.dark .hero {
+		background:
+			radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.15), transparent),
+			radial-gradient(ellipse 60% 40% at 90% 80%, rgba(6, 182, 212, 0.08), transparent);
 	}
 
-	html.dark .code-keyword {
-		color: #c084fc; /* Lighter Purple */
+	html.dark .hero::after {
+		background-image:
+			linear-gradient(rgba(52, 211, 153, 0.04) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(52, 211, 153, 0.04) 1px, transparent 1px);
 	}
 
-	html.dark .code-variable {
-		color: #22d3ee; /* Lighter Cyan */
+	html.dark .gradient-text {
+		background: linear-gradient(135deg, #34d399, #2dd4bf, #22d3ee, #34d399);
+		background-size: 300% 300%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: gradient-move 8s ease-in-out infinite;
 	}
 
-	html.dark .code-string {
-		color: #4ade80; /* Lighter Green */
+	html.dark .terminal {
+		box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
 	}
 
 	@media (max-width: 768px) {
-		.hero-content {
-			flex-direction: column;
+		.hero {
+			padding: 4rem 1.5rem 3rem;
 		}
 
-		.hero {
-			padding: 3rem 1.5rem 2rem;
+		.hero-content {
+			flex-direction: column;
+			gap: 2.5rem;
 		}
 
 		h1 {
@@ -405,23 +464,24 @@ const skills = [
 		}
 
 		h2 {
-			font-size: 1.3rem;
+			font-size: 1.2rem;
 		}
 
-		.code-snippet {
-			transform: rotate(0);
-			margin-top: 2rem;
+		.terminal {
 			max-width: 100%;
 		}
 
 		.cta-buttons {
 			flex-direction: column;
-			align-items: flex-start;
-			gap: 0.8rem;
+			gap: 0.75rem;
 		}
 
-		.skills-grid {
-			grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+		.cta-button {
+			text-align: center;
+		}
+
+		.skill-categories {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

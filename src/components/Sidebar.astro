@@ -1,6 +1,4 @@
 ---
-// Sidebar.astro
-// Props: projects (array of { data: { title: string } })
 const { projects } = Astro.props;
 ---
 <aside class="sidebar">
@@ -21,40 +19,37 @@ const { projects } = Astro.props;
   position: sticky;
   top: 2rem;
 }
+
 .sidebar nav {
-  background: #f6f8fa;
+  background: var(--background-alt);
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
+
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .sidebar li {
-  margin-bottom: 0.7rem;
-}
-.sidebar a {
-  color: #3b4cca;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-.sidebar a:hover {
-  color: #1d2a6b;
+  margin-bottom: 0.25rem;
 }
 
-html.dark .sidebar nav {
-  background: var(--background-alt, #1e293b);
-  border: none;
-  box-shadow: none;
+.sidebar a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 5px;
+  display: block;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
-html.dark .sidebar a {
-  color: var(--link-color, #38bdf8);
+
+.sidebar a:hover {
+  color: var(--link-hover);
+  background: var(--background-color);
 }
-html.dark .sidebar a:hover {
-  color: var(--link-hover, #7dd3fc);
-}
-</style> 
+</style>

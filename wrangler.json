@@ -1,9 +1,18 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "murlax-personal",
-  "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2024-12-09",
-  "compatibility_flags": ["nodejs_compat"],
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "murlax-personal",
+	"main": "./dist/_worker.js/index.js",
+	"compatibility_date": "2026-02-19",
+	"observability": {
+		"enabled": true
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"routes": [{
+		"custom_domain": true,
+		"pattern": "murlax.com"
+	}],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"

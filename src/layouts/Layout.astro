@@ -9,12 +9,14 @@ interface Props {
 	fullWidth?: boolean;
 }
 
-const { 
-	title = '<murali></varma>', 
+const {
+	title = '<murali></varma>',
 	description = 'Personal website for Murali Varma',
 	isMarkdown = false,
 	fullWidth = false
 } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <!doctype html>
@@ -23,6 +25,9 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<script is:inline src="/theme-script.js"></script>
@@ -36,12 +41,12 @@ const {
 				</div>
 				<div class="nav-container">
 					<nav>
-						<a href="/">Home</a>
-						<a href="/projects">Projects</a>
-						<a href="/about">About</a>
-						<a href="https://github.com/muraliavarma" target="_blank" rel="noopener noreferrer">Github <span class="external-icon" aria-label="external"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" style="vertical-align: -2px; margin-left: 4px;"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></span></a>
-						<a href="https://www.linkedin.com/in/murlax/" target="_blank" rel="noopener noreferrer">LinkedIn <span class="external-icon" aria-label="external"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" style="vertical-align: -2px; margin-left: 4px;"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></span></a>
-						<a href="https://murlax.com/resume" target="_blank" rel="noopener noreferrer">Resume <span class="external-icon" aria-label="external"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" style="vertical-align: -2px; margin-left: 4px;"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></span></a>
+						<a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
+						<a href="/projects" class={currentPath === '/projects' ? 'active' : ''}>Projects</a>
+						<a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
+						<a href="https://github.com/muraliavarma" target="_blank" rel="noopener noreferrer">GitHub</a>
+						<a href="https://www.linkedin.com/in/murlax/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+						<a href="/resume" target="_blank" rel="noopener noreferrer">Resume</a>
 					</nav>
 					<DarkModeSwitch />
 				</div>
@@ -51,65 +56,73 @@ const {
 			<slot />
 		</main>
 		<footer>
-			<p>© {new Date().getFullYear()} Murali Varma</p>
+			<p>&copy; {new Date().getFullYear()} Murali Varma</p>
 		</footer>
 	</body>
 </html>
 
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('revealed');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+	document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 <style is:global>
 	:root {
-		--primary-color: #6366f1; /* Indigo */
-		--primary-dark: #4f46e5;
-		--primary-light: #818cf8;
-		--text-color: #1e293b; /* Slate 800 */
-		--text-light: #64748b; /* Slate 500 */
-		--link-color: #0ea5e9; /* Sky 500 */
-		--link-hover: #0284c7; /* Sky 600 */
-		--border-color: #e2e8f0; /* Slate 200 */
+		--primary-color: #10b981;
+		--primary-dark: #059669;
+		--primary-light: #34d399;
+		--text-color: #0f172a;
+		--text-light: #64748b;
+		--link-color: #10b981;
+		--link-hover: #059669;
+		--border-color: #e2e8f0;
 		--background-color: #ffffff;
-		--background-alt: #f8fafc; /* Slate 50 */
-		--success-color: #10b981; /* Emerald 500 */
-		--warning-color: #f59e0b; /* Amber 500 */
-		--error-color: #ef4444; /* Red 500 */
-		--code-bg: #f1f5f9; /* Slate 100 */
+		--background-alt: #f8fafc;
+		--code-bg: #1e293b;
+		--header-bg: rgba(255, 255, 255, 0.82);
+		--card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.06);
+		--card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.08), 0 24px 48px rgba(0, 0, 0, 0.12);
 	}
-	
-	/* Dark mode variables */
+
 	html.dark {
-		--primary-color: #818cf8; /* Lighter Indigo */
-		--primary-dark: #6366f1;
-		--primary-light: #a5b4fc;
-		--text-color: #e2e8f0; /* Slate 200 */
-		--text-light: #94a3b8; /* Slate 400 */
-		--link-color: #38bdf8; /* Sky 400 */
-		--link-hover: #7dd3fc; /* Sky 300 */
-		--border-color: #334155; /* Slate 700 */
-		--background-color: #0f172a; /* Slate 900 */
-		--background-alt: #1e293b; /* Slate 800 */
-		--success-color: #34d399; /* Emerald 400 */
-		--warning-color: #fbbf24; /* Amber 400 */
-		--error-color: #f87171; /* Red 400 */
-		--code-bg: #1e293b; /* Slate 800 */
-		
-		/* Dark mode specific variables */
-		--dark-bg: #0f172a; /* Slate 900 */
-		--dark-text: #e2e8f0; /* Slate 200 */
-		--dark-border: #475569; /* Slate 600 */
+		--primary-color: #34d399;
+		--primary-dark: #10b981;
+		--primary-light: #6ee7b7;
+		--text-color: #e2e8f0;
+		--text-light: #94a3b8;
+		--link-color: #34d399;
+		--link-hover: #6ee7b7;
+		--border-color: #1e293b;
+		--background-color: #0a0f1e;
+		--background-alt: #111827;
+		--code-bg: #0d1117;
+		--header-bg: rgba(10, 15, 30, 0.82);
+		--card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 6px 24px rgba(0, 0, 0, 0.15);
+		--card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3), 0 24px 48px rgba(0, 0, 0, 0.3);
 	}
 
-	* {
-		box-sizing: border-box;
-	}
+	* { box-sizing: border-box; }
 
-	html,
-	body {
+	html { scroll-behavior: smooth; }
+
+	html, body {
 		margin: 0;
 		padding: 0;
 		width: 100%;
 		height: 100%;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 		color: var(--text-color);
 		background-color: var(--background-color);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	a {
@@ -120,15 +133,18 @@ const {
 
 	a:hover {
 		color: var(--link-hover);
-		text-decoration: none;
 	}
 
 	header {
-		background-color: var(--background-color);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: var(--header-bg);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
 		border-bottom: 1px solid var(--border-color);
-		padding: 1rem 1.5rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-		transition: background-color 0.3s ease, border-color 0.3s ease;
+		padding: 0.85rem 1.5rem;
+		transition: background 0.3s ease, border-color 0.3s ease;
 	}
 
 	.header-content {
@@ -138,29 +154,53 @@ const {
 		justify-content: space-between;
 		align-items: center;
 	}
-	
+
 	.nav-container {
 		display: flex;
 		align-items: center;
 	}
 
 	.site-title {
-		font-size: 1.3rem;
-		font-weight: 600;
+		font-size: 1.2rem;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.site-title a {
 		color: var(--primary-color);
-		font-weight: 700;
+		font-weight: 600;
+		letter-spacing: -0.5px;
 	}
 
-	.site-title a:hover {
-		text-decoration: none;
-	}
+	.site-title a:hover { text-decoration: none; }
 
 	nav {
 		display: flex;
-		gap: 1.5rem;
+		gap: 0.25rem;
+	}
+
+	nav a {
+		position: relative;
+		padding: 0.4rem 0.75rem;
+		border-radius: 6px;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--text-light);
+		transition: color 0.2s ease, background-color 0.2s ease;
+	}
+
+	nav a:hover {
+		color: var(--text-color);
+		background-color: var(--background-alt);
+	}
+
+	nav a.active {
+		color: var(--primary-color);
+		background-color: rgba(16, 185, 129, 0.08);
+		font-weight: 600;
+	}
+
+	html.dark nav a.active {
+		background-color: rgba(52, 211, 153, 0.12);
 	}
 
 	main {
@@ -180,15 +220,30 @@ const {
 		border-top: 1px solid var(--border-color);
 		padding: 1.5rem;
 		text-align: center;
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 		color: var(--text-light);
 		background-color: var(--background-alt);
 		transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 	}
 
-	img {
-		max-width: 100%;
+	img { max-width: 100%; }
+
+	/* Scroll reveal */
+	.reveal {
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 	}
+
+	.reveal.revealed {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.reveal-delay-1 { transition-delay: 0.1s; }
+	.reveal-delay-2 { transition-delay: 0.2s; }
+	.reveal-delay-3 { transition-delay: 0.3s; }
+	.reveal-delay-4 { transition-delay: 0.4s; }
 
 	@media (max-width: 768px) {
 		.header-content {
@@ -208,7 +263,7 @@ const {
 			flex-wrap: wrap;
 			width: 100%;
 		}
-		
+
 		.theme-switch-wrapper {
 			margin-left: 0;
 			margin-top: 0.5rem;
